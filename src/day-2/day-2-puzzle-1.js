@@ -5,7 +5,7 @@ const { join } = require("path");
  * Challenge link:
  * https://adventofcode.com/2021/day/2
  */
-const day2Puzzle1 = () => getContents();
+const day2Puzzle1 = () => getContents().then(getFinalPos);
 
 /**
  * Returns the raw contents of a file as an array
@@ -44,7 +44,7 @@ const getFinalPos = (commands) => {
       vertical: 0,
     }
   );
-  return horizontal * vertical;
+  return Math.abs(horizontal * vertical);
 };
 
 module.exports = {
