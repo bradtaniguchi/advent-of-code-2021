@@ -16,9 +16,14 @@ const day2Puzzle1 = () => getContents().then(getFinalPos);
 const getContents = () =>
   readFile(join(__dirname, "./day-2-puzzle-1-input.txt"), "utf-8").then(
     (contents) =>
+    // TODO: fix
       contents
-        .split(" ")
-        .map(([direction, amount]) => [direction, Number(amount)])
+        .split("\n")
+        .map((line) =>
+          line
+            .split(" ")
+            .map(([direction, amount]) => [direction, Number(amount)])
+        )
   );
 
 /**
@@ -37,6 +42,7 @@ const getFinalPos = (commands) => {
       if (command === "up")
         return { ...acc, vertical: (acc.vertical += amount) };
       // technically this is an error
+      throw new Error("unknown command " + command);
       return acc;
     },
     {
@@ -44,6 +50,7 @@ const getFinalPos = (commands) => {
       vertical: 0,
     }
   );
+  console.log("test", { horizontal, vertical, commands: commands.length });
   return Math.abs(horizontal * vertical);
 };
 
