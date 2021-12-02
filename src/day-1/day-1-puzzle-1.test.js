@@ -1,9 +1,10 @@
-const { puzzle1, getContents, getIncreasing } = require("./puzzle-1");
+const { day1Puzzle1, getContents, getIncreasing } = require("./day-1-puzzle-1");
 
-describe("puzzle-1", () => {
-  test("is function", () => expect(typeof puzzle1 === "function").toBe(true));
+describe("day1Puzzle1", () => {
+  test("is function", () =>
+    expect(typeof day1Puzzle1 === "function").toBe(true));
   test("returns challenge answer for input", () =>
-    expect(puzzle1()).resolves.toEqual(1448));
+    expect(day1Puzzle1()).resolves.toEqual(1448));
 
   describe("getContents", () => {
     test("is function", () =>

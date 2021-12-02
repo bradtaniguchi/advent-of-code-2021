@@ -5,14 +5,14 @@ const { join } = require("path");
  * Challenge link:
  * https://adventofcode.com/2021/day/1
  */
-const puzzle1 = () => getContents().then(getIncreasing);
+const day1Puzzle1 = () => getContents().then(getIncreasing);
 
 /**
  * Returns the raw contents of a file as an array of strings
  */
 const getContents = () =>
-  readFile(join(__dirname, "./puzzle-1-input.txt"), "utf-8").then((contents) =>
-    contents.split("\n").map(Number)
+  readFile(join(__dirname, "./day-1-puzzle-1-input.txt"), "utf-8").then(
+    (contents) => contents.split("\n").map(Number)
   );
 
 /**
@@ -27,7 +27,7 @@ const getIncreasing = (nums) =>
   );
 
 module.exports = {
-  puzzle1,
+  day1Puzzle1,
   getContents,
   getIncreasing,
 };
