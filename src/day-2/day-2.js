@@ -14,12 +14,11 @@ const day2Puzzle1 = () => getContents().then(getFinalPos);
  * and the second being the amount as a number.
  */
 const getContents = () =>
-  readFile(join(__dirname, "./day-2-puzzle-1-input.txt"), "utf-8").then(
-    contents =>
-      contents.split("\n").map(line => {
-        const [direction, amount] = line.split(" ");
-        return [direction, Number(amount)];
-      })
+  readFile(join(__dirname, "./day-2-input.txt"), "utf-8").then(contents =>
+    contents.split("\n").map(line => {
+      const [direction, amount] = line.split(" ");
+      return [direction, Number(amount)];
+    })
   );
 
 /**

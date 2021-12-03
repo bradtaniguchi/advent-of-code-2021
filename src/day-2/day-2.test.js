@@ -1,4 +1,4 @@
-const { day2Puzzle1, getContents, getFinalPos } = require("./day-2-puzzle-1");
+const { day2Puzzle1, getContents, getFinalPos } = require("./day-2");
 
 describe("day1Puzzle1", () => {
   test("is function", () =>
