@@ -20,6 +20,9 @@ Below is information on running a few tasks within replit. These may change once
 npm run test
 ```
 
+**note** there isn't currently a way to run only a selection of tests without manually adding
+`.only` to the test suite(s) you want to focus on.
+
 ### Run prettier formatting against js files
 
 ```bash
