@@ -4,15 +4,21 @@ describe("day1Puzzle1", () => {
   test("is function", () =>
     expect(typeof day2Puzzle1 === "function").toBe(true));
   test("returns challenge answer for input", () =>
-    expect(day2Puzzle1()).resolves.toEqual(0));
+    expect(day2Puzzle1()).resolves.toEqual(1507611));
 
   describe("getContents", () => {
     test("resolves to array of arrays", () =>
-      getContents().then((contents) => {
+      getContents().then(contents => {
         expect(Array.isArray(contents)).toBe(true);
         const [direction, number] = contents[0];
         expect(typeof direction).toBe("string");
         expect(typeof number).toBe("number");
+      }));
+    test('first value is "forward 5"', () =>
+      getContents().then(contents => {
+        const firstRow = contents[0];
+        console.log({ firstRow });
+        expect(firstRow).toEqual(["forward", 5]);
       }));
   });
 
@@ -26,7 +32,7 @@ describe("day1Puzzle1", () => {
           ["forward", 8],
           ["up", 3],
           ["down", 8],
-          ["forward", 2],
+          ["forward", 2]
         ])
       ).toEqual(150));
   });

@@ -12,7 +12,7 @@ const day1Puzzle1 = () => getContents().then(getIncreasing);
  */
 const getContents = () =>
   readFile(join(__dirname, "./day-1-puzzle-1-input.txt"), "utf-8").then(
-    (contents) => contents.split("\n").map(Number)
+    contents => contents.split("\n").map(Number)
   );
 
 /**
@@ -20,7 +20,7 @@ const getContents = () =>
  * @param num {number[]} array of numbers to get the number of
  * increasing numbers
  */
-const getIncreasing = (nums) =>
+const getIncreasing = nums =>
   nums.reduce(
     (acc, num, index, arr) => (arr[index - 1] < num ? (acc += 1) : acc),
     0
@@ -29,5 +29,5 @@ const getIncreasing = (nums) =>
 module.exports = {
   day1Puzzle1,
   getContents,
-  getIncreasing,
+  getIncreasing
 };

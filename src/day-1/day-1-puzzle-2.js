@@ -12,7 +12,7 @@ const day1Puzzle2 = () => getContents().then(getGroupIncreasing);
  */
 const getContents = () =>
   readFile(join(__dirname, "./day-1-puzzle-2-input.txt"), "utf-8").then(
-    (contents) => contents.split("\n").map(Number)
+    contents => contents.split("\n").map(Number)
   );
 
 /**
@@ -20,7 +20,7 @@ const getContents = () =>
  * @params nums {number[]} array of numbers to group and check
  * for increasing
  */
-const getGroupIncreasing = (nums) => {
+const getGroupIncreasing = nums => {
   let groupsIncreasing = 0;
   for (let index = 0; index < nums.length; index++) {
     const first = nums[index];
@@ -39,5 +39,5 @@ const getGroupIncreasing = (nums) => {
 module.exports = {
   day1Puzzle2,
   getContents,
-  getGroupIncreasing,
+  getGroupIncreasing
 };

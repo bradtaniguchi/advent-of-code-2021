@@ -15,15 +15,11 @@ const day2Puzzle1 = () => getContents().then(getFinalPos);
  */
 const getContents = () =>
   readFile(join(__dirname, "./day-2-puzzle-1-input.txt"), "utf-8").then(
-    (contents) =>
-    // TODO: fix
-      contents
-        .split("\n")
-        .map((line) =>
-          line
-            .split(" ")
-            .map(([direction, amount]) => [direction, Number(amount)])
-        )
+    contents =>
+      contents.split("\n").map(line => {
+        const [direction, amount] = line.split(" ");
+        return [direction, Number(amount)];
+      })
   );
 
 /**
@@ -32,7 +28,7 @@ const getContents = () =>
  * @params commands {[string, num]} an array of enums, where the first value
  * is the direction, and the second valud is the amount.
  */
-const getFinalPos = (commands) => {
+const getFinalPos = commands => {
   const { horizontal, vertical } = commands.reduce(
     (acc, [command, amount]) => {
       if (command === "forward")
@@ -41,21 +37,18 @@ const getFinalPos = (commands) => {
         return { ...acc, vertical: (acc.vertical -= amount) };
       if (command === "up")
         return { ...acc, vertical: (acc.vertical += amount) };
-      // technically this is an error
       throw new Error("unknown command " + command);
-      return acc;
     },
     {
       horizontal: 0,
-      vertical: 0,
+      vertical: 0
     }
   );
-  console.log("test", { horizontal, vertical, commands: commands.length });
   return Math.abs(horizontal * vertical);
 };
 
 module.exports = {
   day2Puzzle1,
   getContents,
-  getFinalPos,
+  getFinalPos
 };

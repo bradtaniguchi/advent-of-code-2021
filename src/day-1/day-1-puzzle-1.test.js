@@ -10,7 +10,7 @@ describe("day1Puzzle1", () => {
     test("is function", () =>
       expect(typeof getContents === "function").toBe(true));
     test("resolves array of numbers", () =>
-      getContents().then((contents) => {
+      getContents().then(contents => {
         expect(Array.isArray(contents)).toBe(true);
         expect(typeof contents[0] === "number").toBe(true);
       }));
