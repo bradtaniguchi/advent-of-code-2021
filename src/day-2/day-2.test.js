@@ -1,4 +1,10 @@
-const { day2Puzzle1, getContents, getFinalPos } = require("./day-2");
+const {
+  day2Puzzle1,
+  day2Puzzle2,
+  getContents,
+  getFinalPos,
+  getFinalPosWithAim
+} = require("./day-2");
 
 describe("day1Puzzle1", () => {
   test("is function", () =>
@@ -35,5 +41,22 @@ describe("day1Puzzle1", () => {
           ["forward", 2]
         ])
       ).toEqual(150));
+  });
+
+  describe("getFinalPosWithAim", () => {
+    test("is function", () =>
+      expect(typeof getFinalPosWithAim).toEqual("function"));
+    test("returns example input", () =>
+      expect(
+        getFinalPosWithAim([
+          ["forward", 5],
+          ["down", 5],
+          ["forward", 8],
+          ["up", 3],
+          ["down", 8],
+          ["forward", 2]
+          // horizontal 15, depth 60
+        ])
+      ).toEqual(900));
   });
 });

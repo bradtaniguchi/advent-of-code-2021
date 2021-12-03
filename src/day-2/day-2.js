@@ -6,7 +6,11 @@ const { join } = require("path");
  * https://adventofcode.com/2021/day/2
  */
 const day2Puzzle1 = () => getContents().then(getFinalPos);
-
+/**
+ * Challenge link:
+ * https://adventofcode.com/2021/day/2#part2
+ */
+const day2Puzzle2 = () => getContents().then(getFinalPosWithAim);
 /**
  * Returns the raw contents of a file as an array
  * of an enum, with the first value being "forward", "up", "down"
@@ -25,7 +29,7 @@ const getContents = () =>
  * Returns the final position calculated from the input
  * directions.
  * @params commands {[string, num]} an array of enums, where the first value
- * is the direction, and the second valud is the amount.
+ * is the direction, and the second value is the amount.
  */
 const getFinalPos = commands => {
   const { horizontal, vertical } = commands.reduce(
@@ -46,8 +50,30 @@ const getFinalPos = commands => {
   return Math.abs(horizontal * vertical);
 };
 
+/**
+ * Returns the final position, except including the "aim"
+ * mechanic.
+ * @params commands {[string, num]} an array of enums, where the first value
+ * is the direction, and the second value is the amount.
+ */
+const getFinalPosWithAim = nums => {
+  const { horizontal, vertical } = nums.reduce(
+    (acc, [command, amount]) => {
+      // TODO:
+      return acc;
+    },
+    {
+      horizontal: 0,
+      vertical: 0
+    }
+  );
+  return Math.abs(horizontal * vertical);
+};
+
 module.exports = {
   day2Puzzle1,
+  day2Puzzle2,
   getContents,
-  getFinalPos
+  getFinalPos,
+  getFinalPosWithAim
 };
