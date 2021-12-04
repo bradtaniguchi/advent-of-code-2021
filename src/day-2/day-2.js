@@ -59,14 +59,12 @@ const getFinalPos = (commands) => {
 const getFinalPosWithAim = (nums) => {
   const { horizontal, vertical, aim } = nums.reduce(
     (acc, [command, amount]) => {
-      if (command === "forward") {
-        console.log(">>", { ...acc, command, amount });
+      if (command === "forward")
         return {
           ...acc,
           horizontal: (acc.horizontal += amount),
           vertical: acc.vertical + amount * acc.aim,
         };
-      }
       if (command === "down") return { ...acc, aim: (acc.aim += amount) };
       if (command === "up") return { ...acc, aim: (acc.aim -= amount) };
 
@@ -78,7 +76,6 @@ const getFinalPosWithAim = (nums) => {
       aim: 0,
     }
   );
-  console.log({ horizontal, vertical, aim });
   return Math.abs(horizontal * vertical);
 };
 
