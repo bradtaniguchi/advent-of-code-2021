@@ -5,6 +5,7 @@ const {
   getMostCommonBits,
   binaryArrFlip,
   binaryArrToNum,
+  getGammaAndEpsilon,
 } = require("./day-3");
 
 describe("getContents", () => {
@@ -37,4 +38,9 @@ describe("binaryArrFlip", () => {
 
 describe("binaryArrToNum", () => {
   test("returns num", () => expect(binaryArrToNum([1, 0, 1])).toEqual(5));
+});
+
+describe("getGammaAndEpsilon", () => {
+  test("returns values", () =>
+    expect(getGammaAndEpsilon([[1, 0, 1]])).toEqual({ epsilon: 2, gamma: 5 }));
 });

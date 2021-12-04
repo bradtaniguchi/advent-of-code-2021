@@ -49,6 +49,24 @@ const binaryArrFlip = (binaryNum) => binaryNum.map((num) => (num ? 0 : 1));
  */
 const binaryArrToNum = (binaryNum) => parseInt(binaryNum.join(""), 2);
 
+// Multiplying the gamma rate (22) by the epsilon r
+
+/**
+ * Calculates the gamma and epsilon values, which can then be used
+ * to get the final power consumption value.
+ * @params binaryNumArr {number[][]} 2d array of numbers, where
+ * each "row" is an array of numbers, where the entire row represents a single
+ * binary number.
+ * @returns {object} object where the epsilon and gamma rates.
+ */
+const getGammaAndEpsilon = (binaryArrNum) => {
+  const mostCommonBits = getMostCommonBits(binaryArrNum);
+  const leastCommonBits = binaryArrFlip(mostCommonBits);
+  return {
+    gamma: binaryArrToNum(mostCommonBits),
+    epsilon: binaryArrToNum(leastCommonBits),
+  };
+};
 
 module.exports = {
   day3puzzle1,
@@ -57,4 +75,5 @@ module.exports = {
   getMostCommonBits,
   binaryArrFlip,
   binaryArrToNum,
+  getGammaAndEpsilon,
 };
