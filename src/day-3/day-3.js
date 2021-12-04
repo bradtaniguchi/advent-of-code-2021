@@ -18,26 +18,24 @@ const getContents = () =>
  * @returns {number[]} the array of numbers that are calcualted
  * to be the "most common bits"
  */
-const getMostCommonBits = (binaryNumArr) => {
-  if (!binaryNumArr || !binaryNumArr.length) return [];
-  return binaryNumArr
-    .reduce(
-      (mostCommonBits, binaryNum) => {
-        binaryNum.forEach((num, index) => {
-          const mostCommonBitBit = mostCommonBits[index];
-          return num
-            ? (mostCommonBitBit.ones = mostCommonBitBit.ones + 1)
-            : (mostCommonBitBit.zeroes = mostCommonBitBit.zeroes + 1);
-        });
-        return mostCommonBits;
-      },
-      new Array(binaryNumArr[0].length).fill(null).map(() => ({
-        ones: 0,
-        zeroes: 0,
-      }))
-    )
-    .map(({ ones, zeroes }) => (ones > zeroes ? 1 : 0));
-};
+const getMostCommonBits = (binaryNumArr) =>
+  binaryNumArr && binaryNumArr.length
+    ? binaryNumArr
+        .reduce(
+          (mostCommonBits, binaryNum) =>
+            binaryNum.forEach((num, index) =>
+              num
+                ? (mostCommonBits[index].ones = mostCommonBits[index].ones + 1)
+                : (mostCommonBits[index].zeroes =
+                    mostCommonBits[index].zeroes + 1)
+            ) || mostCommonBits,
+          new Array(binaryNumArr[0].length).fill(null).map(() => ({
+            ones: 0,
+            zeroes: 0,
+          }))
+        )
+        .map(({ ones, zeroes }) => (ones > zeroes ? 1 : 0))
+    : [];
 
 module.exports = {
   day3puzzle1,
