@@ -37,9 +37,24 @@ const getMostCommonBits = (binaryNumArr) =>
         .map(({ ones, zeroes }) => (ones > zeroes ? 1 : 0))
     : [];
 
+/**
+ * Flips binary arr.
+ * @param binaryNum {number[]} array of integers
+ * @returns {number[]} the flipped array
+ */
+const binaryArrFlip = (binaryNum) => binaryNum.map((num) => (num ? 0 : 1));
+/**
+ * The binary number in array form to number
+ * @param binaryNum {number[]} array of integers
+ */
+const binaryArrToNum = (binaryNum) => parseInt(binaryNum.join(""), 2);
+
+
 module.exports = {
   day3puzzle1,
   day3puzzle2,
   getContents,
   getMostCommonBits,
+  binaryArrFlip,
+  binaryArrToNum,
 };
