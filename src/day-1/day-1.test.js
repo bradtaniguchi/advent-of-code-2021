@@ -3,14 +3,14 @@ const {
   day1Puzzle2,
   getContents,
   getIncreasing,
-  getGroupIncreasing
+  getGroupIncreasing,
 } = require("./day-1");
 
 describe("getContents", () => {
   test("is function", () =>
     expect(typeof getContents === "function").toBe(true));
   test("resolves array of numbers", () =>
-    getContents().then(contents => {
+    getContents().then((contents) => {
       expect(Array.isArray(contents)).toBe(true);
       expect(typeof contents[0] === "number").toBe(true);
     }));

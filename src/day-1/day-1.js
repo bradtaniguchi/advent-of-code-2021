@@ -17,7 +17,7 @@ const day1Puzzle2 = () => getContents().then(getGroupIncreasing);
  * Returns the raw contents of a file as an array of strings
  */
 const getContents = () =>
-  readFile(join(__dirname, "./day-1-input.txt"), "utf-8").then(contents =>
+  readFile(join(__dirname, "./day-1-input.txt"), "utf-8").then((contents) =>
     contents.split("\n").map(Number)
   );
 
@@ -26,7 +26,7 @@ const getContents = () =>
  * @param num {number[]} array of numbers to get the number of
  * increasing numbers
  */
-const getIncreasing = nums =>
+const getIncreasing = (nums) =>
   nums.reduce(
     (acc, num, index, arr) => (arr[index - 1] < num ? (acc += 1) : acc),
     0
@@ -37,7 +37,7 @@ const getIncreasing = nums =>
  * @params nums {number[]} array of numbers to group and check
  * for increasing
  */
-const getGroupIncreasing = nums => {
+const getGroupIncreasing = (nums) => {
   let groupsIncreasing = 0;
   for (let index = 0; index < nums.length; index++) {
     const first = nums[index];
@@ -58,5 +58,5 @@ module.exports = {
   day1Puzzle2,
   getContents,
   getIncreasing,
-  getGroupIncreasing
+  getGroupIncreasing,
 };
