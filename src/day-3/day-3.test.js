@@ -1,6 +1,6 @@
 const {
-  day3puzzle1,
-  day3puzzle2,
+  day3Puzzle1,
+  day3Puzzle2,
   getContents,
   getMostCommonBits,
   binaryArrFlip,
@@ -16,8 +16,27 @@ describe("getContents", () => {
     }));
 });
 
-describe("day3puzzle1", () => {
-  test.todo("is function");
+describe("day3Puzzle1", () => {
+  test("is function", () => expect(typeof day3Puzzle1).toEqual("function"));
+  test("returns test function input", () =>
+    expect(
+      day3Puzzle1([
+        [0, 0, 1, 0, 0],
+        [1, 1, 1, 1, 0],
+        [1, 0, 1, 1, 0],
+        [1, 0, 1, 1, 1],
+        [1, 0, 1, 0, 1],
+        [0, 1, 1, 1, 1],
+        [0, 0, 1, 1, 1],
+        [1, 1, 1, 0, 0],
+        [1, 0, 0, 0, 0],
+        [1, 1, 0, 0, 1],
+        [0, 0, 0, 1, 0],
+        [0, 1, 0, 1, 0],
+      ])
+    ).resolves.toEqual(198));
+  test("returns challenge answer input", () =>
+    expect(day3Puzzle1()).resolves.toEqual(738234));
 });
 
 describe("day3puzzle2", () => {

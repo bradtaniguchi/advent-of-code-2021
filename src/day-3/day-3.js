@@ -1,10 +1,28 @@
 const { readFile } = require("fs").promises;
 const { join } = require("path");
 
-const day3puzzle1 = () => getContents();
+/**
+ * Returns the value of the day 3 puzzle.
+ * Unlike the previous days, this function takes in the contents, otherwise it will
+ * use the input file. Making the whole test easier to test.
+ * @param contents {number[][] | undefined} contents to use if given, otherwise
+ * we will read the input file
+ * @returns the puzzle 1 value.
+ */
+const day3Puzzle1 = (contents) =>
+  (contents ? Promise.resolve(contents) : getContents()).then(
+    (binaryNumArr) => {
+      const { gamma, epsilon } = getGammaAndEpsilon(binaryNumArr);
+      return gamma * epsilon;
+    }
+  );
 
-const day3puzzle2 = () => getContents();
+const day3Puzzle2 = () => getContents();
 
+/**
+ * Returns the input file in a "binary number array"
+ * @returns {number[][]} a 2d array where each row represents a binary number.
+ */
 const getContents = () =>
   readFile(join(__dirname, "./day-3-input.txt"), "utf-8").then((contents) =>
     contents.split("\n").map((binary) => binary.split("").map(Number))
@@ -69,8 +87,8 @@ const getGammaAndEpsilon = (binaryArrNum) => {
 };
 
 module.exports = {
-  day3puzzle1,
-  day3puzzle2,
+  day3Puzzle1,
+  day3Puzzle2,
   getContents,
   getMostCommonBits,
   binaryArrFlip,
