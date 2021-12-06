@@ -86,6 +86,62 @@ const getGammaAndEpsilon = (binaryArrNum) => {
   };
 };
 
+/**
+ * A Binary Trie node implementation, which is a form
+ * of a Trie, except there is only 2 types of children, "ones" and "zeroes."
+ *
+ * This data structure should be built in roughly O(n) time, and
+ * finding an element takes O(L) time, where `n` is the number
+ * of elements and `L` is the depth of the tree.
+ *
+ * I'm not 100% sure if this is actually called a "Binary Trie", or if
+ * its just a type of binary tree, but its rather close to a Trie, and
+ *
+ * will be used as such.
+ *
+ * @see: https://en.wikipedia.org/wiki/Trie
+ */
+class BinaryTrieNode {
+  /**
+   * @param value {number} either a 1 or 0,
+   * @param parent {BinaryTrieNode} the reference to the parent node, if not given
+   * defaults to null.
+   */
+  constructor(value, parent) {
+    this.value = value;
+    this.parent = parent || null;
+  }
+
+  /**
+   * Returns the parent nodes, recursively.
+   * Can be used with static print methods to get
+   * the binary values up to this point.
+   * @returns {BinaryTrieNode[]} returns the binary trie nodes in order from
+   * the "root" binary trie node.
+   */
+  get parents() {
+    const parents = [];
+    let currentParent = this.parent;
+    while (currentParent) {
+      // while there is a parent, add it to the front of the parents list
+      parents.unshift(currentParent);
+      currentParent = this.parent.parent;
+    }
+    return parents;
+  }
+
+  // TODO:
+  // 1. add display methods
+  // 2. add "add" method,
+  // 3. add "counter" methods for each child.
+  // 4. add "zeroes" and "ones" children values
+}
+
+/**
+ * Creates a binary trie out of binary trie nodes.
+ */
+const createBinaryTrie = (binaryArrNum) => null;
+
 module.exports = {
   day3Puzzle1,
   day3Puzzle2,
@@ -94,4 +150,6 @@ module.exports = {
   binaryArrFlip,
   binaryArrToNum,
   getGammaAndEpsilon,
+  BinaryTrieNode,
+  createBinaryTrie,
 };
