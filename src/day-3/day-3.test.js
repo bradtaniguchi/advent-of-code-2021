@@ -6,6 +6,7 @@ const {
   binaryArrFlip,
   binaryArrToNum,
   getGammaAndEpsilon,
+  createBinaryTrie,
 } = require("./day-3");
 
 describe("getContents", () => {
@@ -62,4 +63,23 @@ describe("binaryArrToNum", () => {
 describe("getGammaAndEpsilon", () => {
   test("returns values", () =>
     expect(getGammaAndEpsilon([[1, 0, 1]])).toEqual({ epsilon: 2, gamma: 5 }));
+});
+
+describe("createBinaryTrie", () => {
+  test("is function", () =>
+    expect(typeof createBinaryTrie).toEqual("function"));
+  test("when given empty array, returns null", () =>
+    expect(createBinaryTrie([])).toEqual(null));
+  test("when given single, single digit binary, creates single node", () =>
+    expect(createBinaryTrie([[1]])).toEqual(null));
+  test.todo("creates binary trie from 3 similar nodes");
+  // TODO: add test-case example.
+});
+describe("BinaryTrieNode", () => {
+  test.todo("is object");
+  test.todo("default parent is null");
+  test.todo("2 digit binary creates 2 nodes");
+  test.todo("duplicate 2 digit binary does not create more nodes");
+  test.todo("counter returns depth of 2 nodes");
+  // TODO: will be more
 });
