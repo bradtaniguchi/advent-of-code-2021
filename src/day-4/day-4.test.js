@@ -1,4 +1,4 @@
-const { day4Puzzle1, getContents } = require("./day-4");
+const { day4Puzzle1, getContents, formatData } = require("./day-4");
 
 describe("day4Puzzle1", () => {
   test("is function", () => expect(typeof day4Puzzle1).toEqual("function"));
@@ -9,10 +9,32 @@ describe("getContents", () => {
 });
 
 describe("formatData", () => {
-  test.todo("returns drawn numbers from first line");
-  test.todo("returns boards");
+  test("is function", () => expect(typeof formatData).toEqual("function"));
+  test("returns drawn numbers from first line", () => {
+    const { drawn } = formatData(EXAMPLE_DATA);
+    expect(drawn).toEqual([
+      7, 4, 9, 5, 11, 17, 23, 2, 0, 14, 21, 24, 10, 16, 13, 6, 15, 25, 12, 22,
+      18, 20, 8, 19, 3, 26, 1,
+    ]);
+  });
+  test.only("returns boards", () => {
+    const { boards } = formatData(EXAMPLE_DATA);
+    // just check the first one for simplicity
+    const board = boards[0];
+    expect(boards.length).toEqual(3);
+    expect(board).toEqual([
+      [22, 13, 17, 11, 0],
+      [8, 2, 23, 4, 24],
+      [21, 9, 14, 16, 7],
+      [6, 10, 3, 18, 5],
+      [1, 12, 20, 15, 19],
+    ]);
+  });
 });
 
+/**
+ * Example data provided, used with most of the tests.
+ */
 const EXAMPLE_DATA = `7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
 
 22 13 17 11  0
@@ -31,5 +53,4 @@ const EXAMPLE_DATA = `7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20
 10 16 15  9 19
 18  8 23 26 20
 22 11 13  6  5
- 2  0 12  3  7
-`;
+ 2  0 12  3  7`;
