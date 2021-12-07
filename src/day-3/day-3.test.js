@@ -6,8 +6,8 @@ const {
   binaryArrFlip,
   binaryArrToNum,
   getGammaAndEpsilon,
-  createBinaryTrie,
-  BinaryTrieNode,
+  getOxygen,
+  getCo2,
 } = require("./day-3");
 
 describe("getContents", () => {
@@ -64,4 +64,37 @@ describe("binaryArrToNum", () => {
 describe("getGammaAndEpsilon", () => {
   test("returns values", () =>
     expect(getGammaAndEpsilon([[1, 0, 1]])).toEqual({ epsilon: 2, gamma: 5 }));
+});
+
+describe("getRating", () => {
+  test("returns null if given nothing", () => {
+    expect(getOxygen()).toEqual(null);
+    expect(getCo2()).toEqual(null);
+  });
+  test("returns null if given empty array", () => {
+    expect(getOxygen([])).toEqual(null);
+    expect(getCo2()).toEqual(null);
+  });
+  test("returns number if given just 1", () => {
+    expect(getOxygen([[1, 0, 1]])).toEqual(5);
+    expect(getCo2([[1, 0, 1]])).toEqual(5);
+  });
+  test("returns example", () => {
+    const exampleInput = [
+      [0, 0, 1, 0, 0],
+      [1, 1, 1, 1, 0],
+      [1, 0, 1, 1, 0],
+      [1, 0, 1, 1, 1],
+      [1, 0, 1, 0, 1],
+      [0, 1, 1, 1, 1],
+      [0, 0, 1, 1, 1],
+      [1, 1, 1, 0, 0],
+      [1, 0, 0, 0, 0],
+      [1, 1, 0, 0, 1],
+      [0, 0, 0, 1, 0],
+      [0, 1, 0, 1, 0],
+    ];
+    expect(getOxygen(exampleInput)).toEqual(23);
+    expect(getCo2(exampleInput)).toEqual(10);
+  });
 });

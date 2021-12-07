@@ -72,7 +72,7 @@ const binaryArrToNum = (binaryNum) => parseInt(binaryNum.join(""), 2);
 /**
  * Calculates the gamma and epsilon values, which can then be used
  * to get the final power consumption value.
- * @params binaryNumArr {number[][]} 2d array of numbers, where
+ * @params {number[][]} binaryNumArr 2d array of numbers, where
  * each "row" is an array of numbers, where the entire row represents a single
  * binary number.
  * @returns {object} object where the epsilon and gamma rates.
@@ -86,6 +86,68 @@ const getGammaAndEpsilon = (binaryArrNum) => {
   };
 };
 
+/**
+ * Generic function that calculates the rating based on the binaryNumArray.
+ * Used to get the oxygen and co2 ratings
+ * @param {number[][]} binaryNumArr array of numbers, where each row is an array of numbers
+ * @param {function} function that is used to compare the zeroes and ones
+ * for the given column
+ *
+ * @returns {number} the rating.
+ */
+const getRating = (binaryNumArr, deciderFunc) => {
+  if (!binaryNumArr || !binaryNumArr.length) {
+    return null;
+  }
+  const rowLength = binaryNumArr[0].length;
+  let current = binaryNumArr;
+  let ones = [];
+  let zeroes = [];
+  for (let binaryNumIndex = 0; binaryNumIndex < rowLength; binaryNumIndex++) {
+    if (!current.length) {
+      // if there are no more current elements, return null;
+      return null;
+    }
+    if (current.length === 1) {
+      // if there is just 1, then we found the latest
+      return binaryArrToNum(current[0]);
+    }
+    for (let rowIndex = 0; rowIndex < current.length; rowIndex++) {
+      if (current[rowIndex][binaryNumIndex] === 1) {
+        ones.push(current[rowIndex]);
+        continue;
+      }
+      if (current[rowIndex][binaryNumIndex] === 0) {
+        zeroes.push(current[rowIndex]);
+        continue;
+      }
+    }
+    current = deciderFunc({ ones, zeroes });
+    ones = [];
+    zeroes = [];
+  }
+  if (!current) {
+    throw new Error("No elements found!");
+  }
+  if (current.length !== 1) {
+    throw new Error("More than 1 final element found: " + current);
+  }
+  return binaryArrToNum(current[0]);
+};
+
+/**
+ * Returns the oxygen rating. Defaults to ones in a tie
+ */
+const getOxygen = (binaryNumArr) =>
+  getRating(binaryNumArr, ({ zeroes, ones }) =>
+    ones.length === zeroes.length || ones.length > zeroes.length ? ones : zeroes
+  );
+
+const getCo2 = (binaryNumArr) =>
+  getRating(binaryNumArr, ({ zeroes, ones }) =>
+    ones.length === zeroes.length || ones.length > zeroes.length ? zeroes : ones
+  );
+
 module.exports = {
   day3Puzzle1,
   day3Puzzle2,
@@ -94,4 +156,6 @@ module.exports = {
   binaryArrFlip,
   binaryArrToNum,
   getGammaAndEpsilon,
+  getOxygen,
+  getCo2,
 };
