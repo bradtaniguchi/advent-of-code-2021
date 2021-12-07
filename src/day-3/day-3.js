@@ -5,7 +5,7 @@ const { join } = require("path");
  * Returns the value of the day 3 puzzle.
  * Unlike the previous days, this function takes in the contents, otherwise it will
  * use the input file. Making the whole test easier to test.
- * @param contents {number[][] | undefined} contents to use if given, otherwise
+ * @param {number[][] | undefined} contents  contents to use if given, otherwise
  * we will read the input file
  * @returns the puzzle 1 value.
  */
@@ -17,7 +17,14 @@ const day3Puzzle1 = (contents) =>
     }
   );
 
-const day3Puzzle2 = () => getContents();
+const day3Puzzle2 = (contents) =>
+  (contents ? Promise.resolve(contents) : getContents()).then(
+    (binaryNumArr) => {
+      const oxygen = getOxygen(binaryNumArr);
+      const co2 = getCo2(binaryNumArr);
+      return oxygen * co2;
+    }
+  );
 
 /**
  * Returns the input file in a "binary number array"

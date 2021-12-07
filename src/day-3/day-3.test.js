@@ -42,7 +42,9 @@ describe("day3Puzzle1", () => {
 });
 
 describe("day3puzzle2", () => {
-  test.todo("is function");
+  test("is function", () => expect(typeof day3Puzzle2).toEqual("function"));
+  test("returns challenge answer input", () =>
+    expect(day3Puzzle2()).resolves.toEqual(3969126));
 });
 
 describe("getMostCommonBits", () => {
