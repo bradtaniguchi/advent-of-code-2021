@@ -17,7 +17,7 @@ describe("formatData", () => {
       18, 20, 8, 19, 3, 26, 1,
     ]);
   });
-  test.only("returns boards", () => {
+  test("returns boards", () => {
     const { boards } = formatData(EXAMPLE_DATA);
     // just check the first one for simplicity
     const board = boards[0];

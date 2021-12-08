@@ -2,13 +2,12 @@
   "name": "advent-of-code-2021",
   "version": "0.0.0",
   "private": "true",
-  "description": "Advent of Code 2021 replit sandbox",
+  "description": "Advent of Code 2021 code",
   "scripts": {
     "test": "jest",
+    "coverage": "jest --collectCoverage",
     "format": "prettier --write ./src/**/*.js"
   },
-  "keywords": [],
-  "author": "",
   "license": "MIT",
   "dependencies": {
     "got": "^11.8.3",
