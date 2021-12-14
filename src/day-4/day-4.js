@@ -133,8 +133,7 @@ class Board {
       if (!this.marked.has(num)) return;
       diagonal.push(num);
     }
-    if (diagonal.every((num) => this.marked.has(num))) return diagonal;
-    return;
+    return diagonal;
   }
   /**
    Returns if the right-left diagonal is fully marked, or undefined if not found
@@ -152,7 +151,7 @@ class Board {
       if (!this.marked.has(num)) return;
       diagonal.push(num);
     }
-    return;
+    return diagonal;
   }
 
   constructor(boardArr) {

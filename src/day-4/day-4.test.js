@@ -62,8 +62,18 @@ describe("Board", () => {
     board.mark(2).mark(9).mark(10).mark(13).mark(12);
     expect(Array.from(board.colWinner)).toEqual([13, 2, 9, 10, 12]);
   });
-  test.todo("leftRightDiagonalWinner returns winning left-right diagonal");
-  test.todo("rightLeftDiagonalWinner returns winning right-left diagonal");
+  test("leftRightDiagonalWinner returns winning left-right diagonal", () => {
+    board.mark(2).mark(22).mark(14).mark(18).mark(19);
+    expect(Array.from(board.leftRightDiagonalWinner)).toEqual([
+      22, 2, 14, 18, 19,
+    ]);
+  });
+  test("rightLeftDiagonalWinner returns winning right-left diagonal", () => {
+    board.mark(1).mark(10).mark(14).mark(4).mark(0);
+    expect(Array.from(board.rightLeftDiagonalWinner)).toEqual([
+      0, 4, 14, 10, 1,
+    ]);
+  });
 });
 
 /**
