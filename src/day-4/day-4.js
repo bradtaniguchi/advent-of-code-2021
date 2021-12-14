@@ -28,13 +28,11 @@ const formatData = (contents) => {
   for (let i = 0; i < numBoards; i++) {
     const start = i * 5;
     boards.push(
-      lines.slice(start, start + boardSize).map(
-        (line) =>
-          line
-            .split(" ")
-            .filter((num) => num !== "")
-            .map(Number)
-        // .map(Number)
+      lines.slice(start, start + boardSize).map((line) =>
+        line
+          .split(" ")
+          .filter((num) => num !== "")
+          .map(Number)
       )
     );
   }
@@ -158,6 +156,8 @@ class Board {
   }
 
   constructor(boardArr) {
+    if (!boardArr || !Array.isArray(boardArr))
+      throw new Error("boardArr must be an array");
     this.boardArr = boardArr;
     // do data validation
     if (boardArr.length !== 5)
@@ -190,12 +190,11 @@ class Board {
   /**
    * Marks the given value in the board.
    * @param {number} num the num to mark
-   * @returns {undefined | Set<number>} the set of values that are marked, or undefined if
-   * the value isn't in the board.
+   * @returns {Board} this
    */
   mark(num) {
-    if (this.values.has(num)) return this.marked.add(num);
-    return undefined;
+    if (this.values.has(num)) this.marked.add(num);
+    return this;
   }
 
   /**

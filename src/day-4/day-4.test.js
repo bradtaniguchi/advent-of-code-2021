@@ -33,16 +33,35 @@ describe("formatData", () => {
 });
 
 describe("Board", () => {
-  test.todo("class exists");
-  test.todo("values property exists as Set");
-  test.todo("values returns all values as Set");
-  test.todo("marked exists as Set");
-  test.todo("marked returns empty initially");
-  test.todo("mark marks value");
-  test.todo("has returns false");
-  test.todo("has returns true");
-  test.todo("rowWinner returns winning row");
-  test.todo("colWinner returns winning column");
+  let board;
+  beforeEach(() => {
+    board = new Board(formatData(EXAMPLE_DATA).boards[0]);
+  });
+  test("class exists", () => expect(Board).toBeTruthy());
+  test("values property exists as Set", () =>
+    expect(board.values).toBeInstanceOf(Set));
+  test("values returns all values as Set", () =>
+    expect(Array.from(board.values.values())).toEqual([
+      22, 13, 17, 11, 0, 8, 2, 23, 4, 24, 21, 9, 14, 16, 7, 6, 10, 3, 18, 5, 1,
+      12, 20, 15, 19,
+    ]));
+  test("marked exists as Set", () => expect(board.marked).toBeInstanceOf(Set));
+  test("marked returns empty initially", () =>
+    expect(Array.from(board.marked.values())).toEqual([]));
+  test("mark marks value", () => {
+    board.mark(13);
+    expect(Array.from(board.marked.values())).toEqual([13]);
+  });
+  test("has returns false", () => expect(board.has(99)).toBe(false));
+  test("has returns true", () => expect(board.has(13)).toBe(true));
+  test("rowWinner returns winning row", () => {
+    board.mark(8).mark(2).mark(23).mark(4).mark(24);
+    expect(Array.from(board.rowWinner)).toEqual([8, 2, 23, 4, 24]);
+  });
+  test("colWinner returns winning column", () => {
+    board.mark(2).mark(9).mark(10).mark(13).mark(12);
+    expect(Array.from(board.colWinner)).toEqual([13, 2, 9, 10, 12]);
+  });
   test.todo("leftRightDiagonalWinner returns winning left-right diagonal");
   test.todo("rightLeftDiagonalWinner returns winning right-left diagonal");
 });
