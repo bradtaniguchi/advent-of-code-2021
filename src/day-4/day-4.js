@@ -67,11 +67,96 @@ class Board {
      * 1. If any row is a winner
      * 2. If any column is a winner
      * 3. If left-right diagonal is a winner
-     * 4. If left-right diagonal is a winner
+     * 4. If right-left diagonal is a winner
      */
-    // TODO:
-    return false;
+    return !!(
+      this.rowWinner ||
+      this.colWinner ||
+      this.leftRightDiagonalWinner ||
+      this.rightLeftDiagonalWinner
+    );
   }
+
+  /**
+   * Returns the winning values that are marked on the board,
+   * or undefined if there isn't one
+   * @returns {number[] | undefined} the array of winning values, or undefined
+   */
+  get winningValues() {
+    // if the board hasn't had enough items marked, then its automatically
+    // not a winner.
+    if (this.marked.length < 5) return false;
+    return (
+      this.rowWinner ||
+      this.colWinner ||
+      this.leftRightDiagonalWinner ||
+      this.rightLeftDiagonalWinner
+    );
+  }
+
+  /**
+   * Returns the row that is fully marked, or undefined if not found
+   * @returns {number[] | undefined} the array of the "winning row", or undefined
+   * if there isn't one
+   */
+  get rowWinner() {
+    if (!Array.isArray(this.boardArr)) return;
+    return this.boardArr.find(
+      (row) => Array.isArray(row) && row.every((num) => this.marked.has(num))
+    );
+  }
+
+  /**
+   * Returns the column that is fully marked, or undefined if not found
+   * @returns {number[] | undefined} the array of the "winning column", or undefined
+   * if there isn't one
+   */
+  get colWinner() {
+    if (!Array.isArray(this.boardArr)) return;
+    for (let colIndex = 0; colIndex < 5; colIndex++) {
+      const col = this.boardArr.map((row) => row[colIndex]);
+      if (col.every((num) => this.marked.has(num))) return col;
+    }
+    return;
+  }
+
+  /**
+   * Returns if the left-right diagonal is fully marked, or undefined if not found
+   * @returns {number[] | undefined} the array of the "winning diagonal", or undefined
+   * if there isn't one
+   */
+  get leftRightDiagonalWinner() {
+    if (!Array.isArray(this.boardArr)) return;
+    const diagonal = [];
+    for (let rowIndex = 0; rowIndex <= 4; rowIndex++) {
+      const row = this.boardArr[rowIndex];
+      if (!Array.isArray(row)) return;
+      const num = row[rowIndex];
+      if (!this.marked.has(num)) return;
+      diagonal.push(num);
+    }
+    if (diagonal.every((num) => this.marked.has(num))) return diagonal;
+    return;
+  }
+  /**
+   Returns if the right-left diagonal is fully marked, or undefined if not found
+   * @returns {number[] | undefined} the array of the "winning diagonal", or undefined
+   * if there isn't one
+   */
+  get rightLeftDiagonalWinner() {
+    if (!Array.isArray(this.boardArr)) return;
+    const diagonal = [];
+    for (let rowIndex = 0; rowIndex <= 4; rowIndex++) {
+      const row = this.boardArr[rowIndex];
+      if (!Array.isArray(row)) return;
+      const colIndex = 4 - rowIndex;
+      const num = row[colIndex];
+      if (!this.marked.has(num)) return;
+      diagonal.push(num);
+    }
+    return;
+  }
+
   constructor(boardArr) {
     this.boardArr = boardArr;
     // do data validation
@@ -94,8 +179,8 @@ class Board {
    */
   _getValues() {
     const values = new Set();
-    for (let column of this.boardArr) {
-      for (let value of column) {
+    for (let row of this.boardArr) {
+      for (let value of row) {
         values.add(value);
       }
     }
