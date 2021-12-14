@@ -2,14 +2,31 @@ const { readFile } = require("fs").promises;
 const { join } = require("path");
 
 const day4Puzzle1 = (contents) =>
-  contents ? Promise.resolve(contents) : getContents();
+  (contents ? Promise.resolve(contents) : getContents()).then(
+    ({ drawn, boards }) => {
+      const boardClasses = boards.map((boardArr) => new Board(boardArr));
+      if (!Array.isArray(drawn)) throw new Error("no drawn");
+
+      for (let num of drawn) {
+        for (let board of boardClasses) {
+          board.mark(num);
+          const winningValues = board.winningValues;
+          if (winningValues) {
+            // TODO: need to change
+            return winningValues;
+          }
+        }
+      }
+      return null;
+    }
+  );
 
 /**
  * Returns the contents in the input file
  * @returns {drawn: number[]; boards: number[][]}
  */
 const getContents = () =>
-  readFile(join(__dirname, "./day-3-input.txt"), "utf-8").then(formatData);
+  readFile(join(__dirname, "./day-4-input.txt"), "utf-8").then(formatData);
 
 /**
  * Formats the contents of the file into a more usable format

@@ -2,6 +2,8 @@ const { day4Puzzle1, getContents, formatData, Board } = require("./day-4");
 
 describe("day4Puzzle1", () => {
   test("is function", () => expect(typeof day4Puzzle1).toEqual("function"));
+  test("returns challenge answer input", () =>
+    expect(day4Puzzle1()).resolves.toEqual());
 });
 
 describe("getContents", () => {
