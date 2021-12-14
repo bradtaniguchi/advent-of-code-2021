@@ -1,4 +1,4 @@
-const { day4Puzzle1, getContents, formatData } = require("./day-4");
+const { day4Puzzle1, getContents, formatData, Board } = require("./day-4");
 
 describe("day4Puzzle1", () => {
   test("is function", () => expect(typeof day4Puzzle1).toEqual("function"));
@@ -30,6 +30,21 @@ describe("formatData", () => {
       [1, 12, 20, 15, 19],
     ]);
   });
+});
+
+describe("Board", () => {
+  test.todo("class exists");
+  test.todo("values property exists as Set");
+  test.todo("values returns all values as Set");
+  test.todo("marked exists as Set");
+  test.todo("marked returns empty initially");
+  test.todo("mark marks value");
+  test.todo("has returns false");
+  test.todo("has returns true");
+  test.todo("rowWinner returns winning row");
+  test.todo("colWinner returns winning column");
+  test.todo("leftRightDiagonalWinner returns winning left-right diagonal");
+  test.todo("rightLeftDiagonalWinner returns winning right-left diagonal");
 });
 
 /**
