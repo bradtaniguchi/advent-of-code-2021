@@ -3,7 +3,8 @@ const { day4Puzzle1, getContents, formatData, Board } = require("./day-4");
 describe("day4Puzzle1", () => {
   test("is function", () => expect(typeof day4Puzzle1).toEqual("function"));
   test("returns challenge answer input", () =>
-    expect(day4Puzzle1()).resolves.toEqual());
+      // TODO: this isn't the final answer, see challenge
+    expect(day4Puzzle1()).resolves.toEqual([99, 93, 22, 0, 51]));
 });
 
 describe("getContents", () => {
